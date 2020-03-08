@@ -13,3 +13,8 @@ trs.forEach(function(tr){
         imc.textContent = (massa.textContent/(altura.textContent * altura.textContent)).toFixed(2);
     }
 });
+
+var buttonAdicionarPaciente = document.querySelector('#adicionar-paciente');
+buttonAdicionarPaciente.addEventListener('click', function(e){
+    event.preventDefault();
+});
