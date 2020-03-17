@@ -1,24 +1,3 @@
-validacao();
-
-function validacao() {
-    let trs = document.querySelectorAll('.paciente');
-    trs.forEach(function(tr){
-        let imc = tr.querySelector('.info-imc');
-        let massa = tr.querySelector('.info-peso');
-        let altura = tr.querySelector('.info-altura');
-        if(massa.textContent >= 1000 || massa.textContent <= 0) {
-            imc.textContent = 'Peso inválido';
-            tr.classList.add('paciente-invalido')
-        }else if(altura.textContent >= 3.0 || altura.textContent <= 0) {
-            imc.textContent = 'Altura inválida';
-            tr.classList.add('paciente-invalido')
-        }else{
-            imc.textContent = (massa.textContent/(altura.textContent * altura.textContent)).toFixed(2);
-        }
-    });
-}
-
-
 var buttonAdicionarPaciente = document.querySelector('#adicionar-paciente');
 buttonAdicionarPaciente.addEventListener('click', function(e){
     event.preventDefault();
@@ -49,7 +28,7 @@ buttonAdicionarPaciente.addEventListener('click', function(e){
     tempTdPeso.textContent = peso;
     tempTdAltura.textContent = altura;
     tempTdGordura.textContent = gordura;
-    tempTdImc.textContent = (peso/(altura * altura)).toFixed(2);
+    tempTdImc.textContent = '';
 
     tempTr.appendChild(tempTdNome);
     tempTr.appendChild(tempTdPeso);
@@ -60,5 +39,5 @@ buttonAdicionarPaciente.addEventListener('click', function(e){
     let tabela = document.querySelector('#tabela-pacientes');
     tabela.appendChild(tempTr);
     
-    validacao();
+    calculaImc();
 });
