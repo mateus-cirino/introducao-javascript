@@ -27,8 +27,7 @@ buttonAdicionarPaciente.addEventListener('click', function(e){
     tempTdNome.textContent = nome;
     tempTdPeso.textContent = peso;
     tempTdAltura.textContent = altura;
-    tempTdGordura.textContent = gordura;
-    tempTdImc.textContent = '';
+    tempTdGordura.textContent = gordura;    
 
     tempTr.appendChild(tempTdNome);
     tempTr.appendChild(tempTdPeso);
@@ -39,5 +38,5 @@ buttonAdicionarPaciente.addEventListener('click', function(e){
     let tabela = document.querySelector('#tabela-pacientes');
     tabela.appendChild(tempTr);
     
-    calculaImc();
+    verificacao();
 });
