@@ -4,10 +4,7 @@ buttonAdicionarPaciente.addEventListener('click', function(e){
 
     let form_insert = document.querySelector('#form_insert');
 
-    let nome = form_insert.querySelector('#nome').value;
-    let peso = form_insert.querySelector('#peso').value;
-    let altura = form_insert.querySelector('#altura').value;
-    let gordura = form_insert.querySelector('#gordura').value;
+    let paciente = obterPacienteForm(form_insert);
 
     let tempTr = document.createElement('tr');
     tempTr.classList.add('paciente');
@@ -24,10 +21,10 @@ buttonAdicionarPaciente.addEventListener('click', function(e){
     tempTdGordura.classList.add('info-gordura');
     tempTdImc.classList.add('info-imc');
 
-    tempTdNome.textContent = nome;
-    tempTdPeso.textContent = peso;
-    tempTdAltura.textContent = altura;
-    tempTdGordura.textContent = gordura;    
+    tempTdNome.textContent = paciente.nome;
+    tempTdPeso.textContent = paciente.peso;
+    tempTdAltura.textContent = paciente.altura;
+    tempTdGordura.textContent = paciente.gordura;    
 
     tempTr.appendChild(tempTdNome);
     tempTr.appendChild(tempTdPeso);
@@ -40,3 +37,14 @@ buttonAdicionarPaciente.addEventListener('click', function(e){
     
     verificacao();
 });
+
+function obterPacienteForm(form) {
+    let paciente = {
+        nome: form.querySelector('#nome').value,
+        peso: form.querySelector('#peso').value,
+        altura: form.querySelector('#altura').value,
+        gordura: form.querySelector('#gordura').value,
+        imc: ''
+    }
+    return paciente;
+}
