@@ -1,1 +1,5 @@
-calculaImc();
+function inicializa () {
+    verificacao();
+}
+
+inicializa();
