@@ -6,33 +6,10 @@ buttonAdicionarPaciente.addEventListener('click', function(e){
 
     let paciente = obterPacienteForm(form_insert);
 
-    let tempTr = document.createElement('tr');
-    tempTr.classList.add('paciente');
+    let tempTr = montaTr(paciente);
 
-    let tempTdNome = document.createElement('td');
-    let tempTdPeso = document.createElement('td');
-    let tempTdAltura = document.createElement('td');
-    let tempTdGordura = document.createElement('td');
-    let tempTdImc = document.createElement('td');
-
-    tempTdNome.classList.add('info-nome');
-    tempTdPeso.classList.add('info-peso');
-    tempTdAltura.classList.add('info-altura');
-    tempTdGordura.classList.add('info-gordura');
-    tempTdImc.classList.add('info-imc');
-
-    tempTdNome.textContent = paciente.nome;
-    tempTdPeso.textContent = paciente.peso;
-    tempTdAltura.textContent = paciente.altura;
-    tempTdGordura.textContent = paciente.gordura;    
-
-    tempTr.appendChild(tempTdNome);
-    tempTr.appendChild(tempTdPeso);
-    tempTr.appendChild(tempTdAltura);
-    tempTr.appendChild(tempTdGordura);
-    tempTr.appendChild(tempTdImc);
-    
     let tabela = document.querySelector('#tabela-pacientes');
+
     tabela.appendChild(tempTr);
     
     verificacao();
@@ -47,4 +24,33 @@ function obterPacienteForm(form) {
         imc: ''
     }
     return paciente;
+}
+
+function montaTr(paciente) {
+    let tempTr = document.createElement('tr');
+    tempTr.classList.add('paciente');
+
+    let tempTdNome = montaTd(paciente.nome, "info-nome");
+    let tempTdPeso = montaTd(paciente.peso, "info-peso");
+    let tempTdAltura = montaTd(paciente.altura, "info-altura");
+    let tempTdGordura = montaTd(paciente.gordura, "info-gordura");
+    let tempTdImc = montaTd("", "info-imc");   
+
+    tempTr.appendChild(tempTdNome);
+    tempTr.appendChild(tempTdPeso);
+    tempTr.appendChild(tempTdAltura);
+    tempTr.appendChild(tempTdGordura);
+    tempTr.appendChild(tempTdImc);
+
+    return tempTr;
+}
+
+function montaTd(valor, classe) {
+    let tempTd = document.createElement('td');
+
+    tempTd.textContent = valor;
+
+    tempTd.classList.add(classe);
+
+    return tempTd;
 }
