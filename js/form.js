@@ -4,17 +4,26 @@ buttonAdicionarPaciente.addEventListener('click', function(e){
 
     let form_insert = document.querySelector('#form_insert');
 
+    let erros = form_insert.querySelector('#erros');
+
     let paciente = obterPacienteForm(form_insert);
 
-    let tempTr = montaTr(paciente);
+    if(validacao_peso(paciente.peso) && validacao_altura(paciente.altura)) {
+        paciente.imc = calculaImc(paciente.peso, paciente.altura);
+        
+        erros.textContent = "";
 
-    let tabela = document.querySelector('#tabela-pacientes');
+        let tempTr = montaTr(paciente);
 
-    tabela.appendChild(tempTr);
+        let tabela = document.querySelector('#tabela-pacientes');
     
-    form_insert.reset();
-
-    verificacao();
+        tabela.appendChild(tempTr);
+        
+        form_insert.reset();
+    }else {
+        erros.textContent = !validacao_peso(paciente.peso) ? "Peso inválido" : ""
+                            + " " + !validacao_altura(paciente.altura) ? "Altura inválida" : "";
+    }
 });
 
 function obterPacienteForm(form) {
@@ -36,7 +45,7 @@ function montaTr(paciente) {
     let tempTdPeso = montaTd(paciente.peso, "info-peso");
     let tempTdAltura = montaTd(paciente.altura, "info-altura");
     let tempTdGordura = montaTd(paciente.gordura, "info-gordura");
-    let tempTdImc = montaTd("", "info-imc");   
+    let tempTdImc = montaTd(paciente.imc, "info-imc");   
 
     tempTr.appendChild(tempTdNome);
     tempTr.appendChild(tempTdPeso);
