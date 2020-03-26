@@ -12,6 +12,8 @@ buttonAdicionarPaciente.addEventListener('click', function(e){
 
     tabela.appendChild(tempTr);
     
+    form_insert.reset();
+
     verificacao();
 });
 
