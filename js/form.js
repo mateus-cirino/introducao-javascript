@@ -21,8 +21,10 @@ buttonAdicionarPaciente.addEventListener('click', function(e){
         
         form_insert.reset();
     }else {
-        erros.textContent = !validacao_peso(paciente.peso) ? "Peso inválido" : ""
-                            + " " + !validacao_altura(paciente.altura) ? "Altura inválida" : "";
+        let msg_peso_erro = !validacao_peso(paciente.peso) ? "Peso inválido" : "";
+        let msg_altura_erro = !validacao_altura(paciente.altura) ? "Altura inválida" : "";
+
+        erros.textContent = msg_peso_erro + " " + msg_altura_erro;
     }
 });
 
