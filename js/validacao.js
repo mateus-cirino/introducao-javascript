@@ -11,3 +11,24 @@ function validacao_altura(altura) {
     }
     return true;
 }
+
+function validacao_nome(nome) {    
+    if (nome.length <= 0) {
+        return false;
+    }
+    return true;
+}
+
+function listaDeErros(paciente) {
+    let erros = [];
+    if(!validacao_nome(paciente.nome)) {
+        erros.push("Nome inválido");
+    }
+    if(!validacao_peso(paciente.peso)) {
+        erros.push("Peso inválido");
+    }
+    if(!validacao_altura(paciente.altura)) {
+        erros.push("Altura inválida");
+    }
+    return erros;
+}
