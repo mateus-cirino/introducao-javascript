@@ -4,15 +4,15 @@ buttonAdicionarPaciente.addEventListener('click', function(e){
 
     let form_insert = document.querySelector('#form_insert');
 
-    let erros = form_insert.querySelector('#erros');
-
     let paciente = obterPacienteForm(form_insert);
 
-    if(validacao_peso(paciente.peso) && validacao_altura(paciente.altura)) {
+    let erros = form_insert.querySelector('#erros');
+
+    erros.textContent = "";
+
+    if(validacao_peso(paciente.peso) && validacao_altura(paciente.altura)) {        
         paciente.imc = calculaImc(paciente.peso, paciente.altura);
         
-        erros.textContent = "";
-
         let tempTr = montaTr(paciente);
 
         let tabela = document.querySelector('#tabela-pacientes');
@@ -21,10 +21,17 @@ buttonAdicionarPaciente.addEventListener('click', function(e){
         
         form_insert.reset();
     }else {
-        let msg_peso_erro = !validacao_peso(paciente.peso) ? "Peso inválido" : "";
-        let msg_altura_erro = !validacao_altura(paciente.altura) ? "Altura inválida" : "";
+        if(!validacao_peso(paciente.peso)) {
+            let erroLi = document.createElement('li');
+            erroLi.textContent = "Peso inválido";
+            erros.appendChild(erroLi);
+        }
 
-        erros.textContent = msg_peso_erro + " " + msg_altura_erro;
+        if(!validacao_altura(paciente.altura)) {
+            let erroLi = document.createElement('li');
+            erroLi.textContent = "Altura inválida";
+            erros.appendChild(erroLi);
+        }
     }
 });
 
