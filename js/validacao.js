@@ -18,6 +18,12 @@ function validacao_nome(nome) {
     }
     return true;
 }
+function validacao_gordura(gordura) {    
+    if (gordura <= 0) {
+        return false;
+    }
+    return true;
+}
 
 function listaDeErros(paciente) {
     let erros = [];
@@ -29,6 +35,9 @@ function listaDeErros(paciente) {
     }
     if(!validacao_altura(paciente.altura)) {
         erros.push("Altura inválida");
+    }
+    if(!validacao_gordura(paciente.gordura)) {
+        erros.push("% de gordura inválida");
     }
     return erros;
 }
