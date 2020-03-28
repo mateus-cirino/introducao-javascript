@@ -6,11 +6,13 @@ buttonAdicionarPaciente.addEventListener('click', function(e){
 
     let paciente = obterPacienteForm(form_insert);
 
-    let erros = form_insert.querySelector('#erros');
+    let erroUl = form_insert.querySelector('#erros');
 
-    erros.textContent = "";
+    erroUl.textContent = "";
 
-    if(validacao_peso(paciente.peso) && validacao_altura(paciente.altura)) {        
+    erros = listaDeErros(paciente);
+
+    if(erros.length == 0) {                
         paciente.imc = calculaImc(paciente.peso, paciente.altura);
         
         let tempTr = montaTr(paciente);
@@ -21,17 +23,11 @@ buttonAdicionarPaciente.addEventListener('click', function(e){
         
         form_insert.reset();
     }else {
-        if(!validacao_peso(paciente.peso)) {
-            let erroLi = document.createElement('li');
-            erroLi.textContent = "Peso inválido";
-            erros.appendChild(erroLi);
-        }
-
-        if(!validacao_altura(paciente.altura)) {
-            let erroLi = document.createElement('li');
-            erroLi.textContent = "Altura inválida";
-            erros.appendChild(erroLi);
-        }
+        erros.forEach((erro) => {
+            erroLi = document.createElement('li');
+            erroLi.textContent = erro;
+            erroUl.appendChild(erroLi);
+        });
     }
 });
 
