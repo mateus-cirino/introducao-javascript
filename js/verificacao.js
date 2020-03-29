@@ -22,6 +22,8 @@ function verificacao() {
 
 function obterPacienteTr(tr) {
     let paciente = {
+        codigo: tr.querySelector('.info-codigo').textContent,
+        nome: tr.querySelector('.info-nome').textContent,
         nome: tr.querySelector('.info-nome').textContent,
         peso: tr.querySelector('.info-peso').textContent,
         altura: tr.querySelector('.info-altura').textContent,
@@ -32,6 +34,7 @@ function obterPacienteTr(tr) {
 }
 
 function salvarPacienteTr(paciente, tr) {
+    tr.querySelector('.info-codigo').textContent = paciente.codigo;
     tr.querySelector('.info-nome').textContent = paciente.nome;
     tr.querySelector('.info-peso').textContent = paciente.peso;
     tr.querySelector('.info-altura').textContent = paciente.altura;
