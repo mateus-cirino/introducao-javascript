@@ -35,11 +35,28 @@ function validacao_codigo(codigo) {
     return true;
 }
 
-function listaDeErros(paciente) {
+function listaDeErrosAdicionar(paciente) {
     let erros = [];
     if(!validacao_codigo(paciente.codigo)) {
         erros.push("Código inválido");
     }    
+    if(!validacao_nome(paciente.nome)) {
+        erros.push("Nome inválido");
+    }
+    if(!validacao_peso(paciente.peso)) {
+        erros.push("Peso inválido");
+    }
+    if(!validacao_altura(paciente.altura)) {
+        erros.push("Altura inválida");
+    }
+    if(!validacao_gordura(paciente.gordura)) {
+        erros.push("% de gordura inválida");
+    }
+    return erros;
+}
+
+function listaDeErrosSalvar(paciente) {
+    let erros = []; 
     if(!validacao_nome(paciente.nome)) {
         erros.push("Nome inválido");
     }
