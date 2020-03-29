@@ -12,6 +12,33 @@ buttonDeletarPaciente.addEventListener('click', function() {
 });
 
 var buttonSalvarPaciente = document.querySelector('#salvar-paciente');
+buttonSalvarPaciente.addEventListener('click', function(){
+    event.preventDefault();
+    
+    let form_insert = document.querySelector('#form_insert');
+
+    let paciente = obterPacienteForm(form_insert);
+
+    let erroUl = form_insert.querySelector('#erros');
+
+    erroUl.textContent = "";
+
+    erros = listaDeErrosSalvar(paciente);
+
+    if(erros.length == 0) {                
+        paciente.imc = calculaImc(paciente.peso, paciente.altura);
+                
+        atualizarPaciente(paciente);
+        
+        reset(form_insert);
+    }else {
+        erros.forEach((erro) => {
+            erroLi = document.createElement('li');
+            erroLi.textContent = erro;
+            erroUl.appendChild(erroLi);
+        });
+    }
+});
 
 var buttonAdicionarPaciente = document.querySelector('#adicionar-paciente');
 
@@ -26,7 +53,7 @@ buttonAdicionarPaciente.addEventListener('click', function(e){
 
     erroUl.textContent = "";
 
-    erros = listaDeErros(paciente);
+    erros = listaDeErrosAdicionar(paciente);
 
     if(erros.length == 0) {                
         paciente.imc = calculaImc(paciente.peso, paciente.altura);
@@ -136,6 +163,16 @@ function deletarPaciente(codigo) {
     pacientesTr.forEach((pacienteTr) => {
         if(pacienteTr.querySelector('.info-codigo').textContent == codigo) {
             pacienteTr.remove();
+        }
+
+    });
+}
+
+function atualizarPaciente(paciente) {
+    let pacientesTr = Array.from(document.querySelectorAll('.paciente'));
+    pacientesTr.forEach((pacienteTr) => {
+        if(pacienteTr.querySelector('.info-codigo').textContent == paciente.codigo) {            
+            salvarPacienteTr(paciente, pacienteTr);
         }
 
     });
