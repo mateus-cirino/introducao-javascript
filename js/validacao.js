@@ -24,9 +24,22 @@ function validacao_gordura(gordura) {
     }
     return true;
 }
+function validacao_codigo(codigo) {    
+    codigosPacientes = Array.from(document.querySelectorAll('.info-codigo'))
+                            .map((codigoPaciente) => {
+                                return codigoPaciente.textContent;
+                            });
+    if (codigosPacientes.indexOf(codigo) != -1 || codigo == "") {
+        return false;
+    }
+    return true;
+}
 
 function listaDeErros(paciente) {
     let erros = [];
+    if(!validacao_codigo(paciente.codigo)) {
+        erros.push("Código inválido");
+    }    
     if(!validacao_nome(paciente.nome)) {
         erros.push("Nome inválido");
     }
