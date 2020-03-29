@@ -33,6 +33,7 @@ buttonAdicionarPaciente.addEventListener('click', function(e){
 
 function obterPacienteForm(form) {
     let paciente = {
+        codigo: form.querySelector('#codigo').value,
         nome: form.querySelector('#nome').value,
         peso: form.querySelector('#peso').value,
         altura: form.querySelector('#altura').value,
@@ -46,12 +47,14 @@ function montaTr(paciente) {
     let tempTr = document.createElement('tr');
     tempTr.classList.add('paciente');
 
+    let tempTdCodigo = montaTd(paciente.codigo, "info-codigo");
     let tempTdNome = montaTd(paciente.nome, "info-nome");
     let tempTdPeso = montaTd(paciente.peso, "info-peso");
     let tempTdAltura = montaTd(paciente.altura, "info-altura");
     let tempTdGordura = montaTd(paciente.gordura, "info-gordura");
     let tempTdImc = montaTd(paciente.imc, "info-imc");   
 
+    tempTr.appendChild(tempTdCodigo);
     tempTr.appendChild(tempTdNome);
     tempTr.appendChild(tempTdPeso);
     tempTr.appendChild(tempTdAltura);
