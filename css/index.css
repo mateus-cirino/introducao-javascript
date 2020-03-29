@@ -141,3 +141,11 @@ button[disabled=disabled], button:disabled {
 .messagem-erro {
 	color: #E12A27;
 }
+
+.bto-salvar {
+	background-color: green;
+}
+
+.bto-deletar {
+	background-color: #E12A27;
+}
