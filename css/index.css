@@ -149,3 +149,7 @@ button[disabled=disabled], button:disabled {
 .bto-deletar {
 	background-color: #E12A27;
 }
+
+.flex {
+	display: flex;
+}
