@@ -1,3 +1,12 @@
+var buttonCancelarOperacao = document.querySelector('#cancelar-operacao');
+buttonCancelarOperacao.addEventListener('click', function() {
+    event.preventDefault();
+
+    let form = document.querySelector('#form_insert');
+
+    reset(form);
+
+})
 var buttonDeletarPaciente = document.querySelector('#deletar-paciente');
 buttonDeletarPaciente.addEventListener('click', function() {
     event.preventDefault();
@@ -132,12 +141,14 @@ function habilitarEdicao() {
     
     let btnSalvar = form.querySelector('#salvar-paciente');
     let btnDeletar = form.querySelector('#deletar-paciente');
+    let btnCancelar = form.querySelector('#cancelar-operacao');
 
     let codigoField = form.querySelector('#codigo');
     codigoField.disabled = true;
 
     btnSalvar.disabled = false;
     btnDeletar.disabled = false;
+    btnCancelar.disabled = false;
 }
 
 function desabilitaEdicao() {
@@ -145,12 +156,14 @@ function desabilitaEdicao() {
     
     let btnSalvar = form.querySelector('#salvar-paciente');
     let btnDeletar = form.querySelector('#deletar-paciente');
+    let btnCancelar = form.querySelector('#cancelar-operacao');
 
     let codigoField = form.querySelector('#codigo');
     codigoField.disabled = false;
 
     btnSalvar.disabled = true;
     btnDeletar.disabled = true;
+    btnCancelar.disabled = true;
 }
 
 function reset(form) {
