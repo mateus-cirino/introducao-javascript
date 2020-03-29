@@ -150,6 +150,10 @@ button[disabled=disabled], button:disabled {
 	background-color: #E12A27;
 }
 
+.bto-cancelar {
+	background-color: #2a2a2a;
+}
+
 .flex {
 	display: flex;
 }
