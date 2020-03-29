@@ -1,4 +1,20 @@
+var buttonDeletarPaciente = document.querySelector('#deletar-paciente');
+buttonDeletarPaciente.addEventListener('click', function() {
+    event.preventDefault();
+
+    let form = document.querySelector('#form_insert');
+    
+    let paciente = obterPacienteForm(form);
+
+    deletarPaciente(paciente.codigo);
+
+    reset(form);
+});
+
+var buttonSalvarPaciente = document.querySelector('#salvar-paciente');
+
 var buttonAdicionarPaciente = document.querySelector('#adicionar-paciente');
+
 buttonAdicionarPaciente.addEventListener('click', function(e){
     event.preventDefault();
 
@@ -21,7 +37,7 @@ buttonAdicionarPaciente.addEventListener('click', function(e){
     
         tabela.appendChild(tempTr);
         
-        form_insert.reset();
+        reset(form_insert);
     }else {
         erros.forEach((erro) => {
             erroLi = document.createElement('li');
@@ -72,4 +88,55 @@ function montaTd(valor, classe) {
     tempTd.classList.add(classe);
 
     return tempTd;
+}
+
+function addPacienteForm (paciente) {
+    let form = document.querySelector('#form_insert');
+    
+    form.querySelector('#codigo').value = paciente.codigo;
+    form.querySelector('#nome').value = paciente.nome;
+    form.querySelector('#peso').value = paciente.peso;
+    form.querySelector('#altura').value = paciente.altura;
+    form.querySelector('#gordura').value = paciente.gordura;
+}
+
+function habilitarEdicao() {
+    let form = document.querySelector('#form_insert');
+    
+    let btnSalvar = form.querySelector('#salvar-paciente');
+    let btnDeletar = form.querySelector('#deletar-paciente');
+
+    let codigoField = form.querySelector('#codigo');
+    codigoField.disabled = true;
+
+    btnSalvar.disabled = false;
+    btnDeletar.disabled = false;
+}
+
+function desabilitaEdicao() {
+    let form = document.querySelector('#form_insert');
+    
+    let btnSalvar = form.querySelector('#salvar-paciente');
+    let btnDeletar = form.querySelector('#deletar-paciente');
+
+    let codigoField = form.querySelector('#codigo');
+    codigoField.disabled = false;
+
+    btnSalvar.disabled = true;
+    btnDeletar.disabled = true;
+}
+
+function reset(form) {
+    form.reset();
+    desabilitaEdicao();
+}
+
+function deletarPaciente(codigo) {
+    let pacientesTr = Array.from(document.querySelectorAll('.paciente'));
+    pacientesTr.forEach((pacienteTr) => {
+        if(pacienteTr.querySelector('.info-codigo').textContent == codigo) {
+            pacienteTr.remove();
+        }
+
+    });
 }
